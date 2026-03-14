@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bilal Masjid Scoring Forms</title>
+    <meta name="description" content="Bilal Masjid judges portal for scoring forms (Tally links)." />
+    <style>
+      :root {
+        --bg: #f7f9fc;
+        --card: #ffffff;
+        --card-soft: #f2f5fb;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        --radius: 16px;
+
+        --quran: #7c3aed;
+        --hadith: #16a34a;
+        --other: #0284c7;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      a { text-decoration: none; color: inherit; }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+      }
+
+      header {
+        padding: 28px;
+        border-radius: var(--radius);
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        margin-bottom: 22px;
+      }
+
+      .titleRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      h1 { margin: 0; font-size: clamp(24px, 2.5vw, 34px); }
+
+      .pill {
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--card-soft);
+        border: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .sub {
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .hint {
+        margin-top: 16px;
+        padding: 14px;
+        border-radius: 12px;
+        background: #eef2ff;
+        border: 1px solid #dbeafe;
+        font-size: 13px;
+        color: #374151;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 18px;
+      }
+
+      .section {
+        grid-column: span 12;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      @media (min-width: 900px) {
+        .section.half { grid-column: span 6; }
+      }
+
+      .sectionHeader {
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        background: var(--card-soft);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sectionTitle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .section h2 { margin: 0; font-size: 16px; }
+
+      .headerActions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .count {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .leaderboardBtn {
+        padding: 8px 14px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        background: #111827;
+        color: white;
+        transition: opacity 0.15s ease;
+      }
+
+      .leaderboardBtn:hover { opacity: 0.9; }
+
+      .list {
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .judge {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: var(--card-soft);
+        border: 1px solid var(--border);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+
+      .judge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+      }
+
+      .judgeName strong { display: block; font-size: 14px; }
+      .judgeName span { font-size: 12px; color: var(--muted); }
+
+      .btn {
+        padding: 9px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+        transition: opacity 0.15s ease, transform 0.1s ease;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      footer {
+        margin-top: 28px;
+        text-align: center;
+        font-size: 12.5px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="titleRow">
+          <h1>Bilal Masjid Judges Scoring Forms</h1>
+          <div class="pill">Bilal Masjid in partnership with Ibn Katheer Quran Competition</div>
+        </div>
+        <p class="sub">
+          Select your name to access your scoring form. Live scores are available inside each category.
+        </p>
+        <div class="hint">
+          Judges use the forms below. Organizers can monitor live totals using the scores buttons.
+        </div>
+      </header>
+
+      <main class="grid">
+
+        <!-- Quran -->
+        <section class="section">
+          <div class="sectionHeader">
+            <div class="sectionTitle">
+              <span class="dot" style="background: var(--quran)"></span>
+              <h2>Quran Judges</h2>
+            </div>
+            <div class="headerActions">
+              <div class="count">9 forms</div>
+              <a class="leaderboardBtn" href="https://docs.google.com/spreadsheets/d/1coAiprpBK4i3BKoVRGPJiIn2OPsXjlfKqaZxc3OTKTs/edit?usp=sharing" target="_blank">
+                View Scores
+              </a>
+            </div>
+          </div>
+          <div class="list">
+            <div class="judge"><div class="judgeName"><strong>Fatmah W</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/EkP9y4" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Rayyan A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/aQGNOb" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Musa A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/Ek0zqr" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Hadiya A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/zxzpak" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Aadam A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/7RDBBa" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Abdelrahman A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/q4BxxO" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Sufyan M</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/NpVz80" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Nuradin A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/XxGVQg" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Yusuf A</strong><span>Quran</span></div><a class="btn" href="https://tally.so/r/dWA7Zr" target="_blank">Open Form</a></div>
+          </div>
+        </section>
+
+        <!--
+        Hadith
+        <section class="section half">
+          <div class="sectionHeader">
+            <div class="sectionTitle">
+              <span class="dot" style="background: var(--hadith)"></span>
+              <h2>Hadith Judges</h2>
+            </div>
+            <div class="headerActions">
+              <div class="count">3 forms</div>
+              <a class="leaderboardBtn" href="https://docs.google.com/spreadsheets/d/19ziG6-C-c9tMbwqT1cg9FzXCKf6cJw6zoeSOeNMHfAs/edit?usp=sharing" target="_blank">
+                View Scores
+              </a>
+            </div>
+          </div>
+          <div class="list">
+            <div class="judge"><div class="judgeName"><strong>Aadam Ahmed</strong><span>Hadith</span></div><a class="btn" href="https://tally.so/r/J928pz" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Mustafa Ahmed</strong><span>Hadith</span></div><a class="btn" href="https://tally.so/r/GxrYpQ" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Nuradin Abdirahman</strong><span>Hadith</span></div><a class="btn" href="https://tally.so/r/PdA89P" target="_blank">Open Form</a></div>
+          </div>
+        </section>
+        -->
+
+        <!--
+        Adhan + Duas + Nasheed
+        <section class="section half">
+          <div class="sectionHeader">
+            <div class="sectionTitle">
+              <span class="dot" style="background: var(--other)"></span>
+              <h2>Adhan + Duas + Nasheed Judges</h2>
+            </div>
+            <div class="headerActions">
+              <div class="count">2 forms</div>
+              <a class="leaderboardBtn" href="https://docs.google.com/spreadsheets/d/1shPhP3FB-xPo9mt78JlSpWV0EiSfnkyytV7J0dsjcE8/edit?usp=sharing" target="_blank">
+                View Scores
+              </a>
+            </div>
+          </div>
+          <div class="list">
+            <div class="judge"><div class="judgeName"><strong>Lamiaa Otaify</strong><span>Adhan, Duas, Nasheed</span></div><a class="btn" href="https://tally.so/r/MeA8E8" target="_blank">Open Form</a></div>
+            <div class="judge"><div class="judgeName"><strong>Elham Mahram</strong><span>Adhan, Duas, Nasheed</span></div><a class="btn" href="https://tally.so/r/GxrYlO" target="_blank">Open Form</a></div>
+          </div>
+        </section>
+        -->
+
+      </main>
+
+      <footer>
+        Questions? Reach out to us at ibnkatheercomp@gmail.com.
+      </footer>
+    </div>
+  </body>
+</html>
